@@ -1,23 +1,19 @@
 # Overview
 
-{Important!  Do not say in this section that this is college assignment.  Talk about what you are trying to accomplish as a software engineer to further your learning.}
+My software displays "Hello World!" to the screen, as well as the current date, and a positive message. This project serves as an introduction to this repository, and as such it will serve as the most basic of the projects here. 
 
-{Provide a description of your software}
+Due to this, I decided to add a positive message for anyone who decided to run it themselves. I hope you have a great day.
 
-{Describe your purpose for creating this software.}
-
-{Provide a link to your YouTube demonstration.  It should be a one minute demo of the software running and a walkthrough of the code.}
-
-[Software Demo Video](http://youtube.link.goes.here)
+[Demonstration](https://youtu.be/VyZ7qOE7DZI)
 
 # Development Environment
 
-{Describe the tools that you used to develop the software}
+I used the datetime module in this project.
 
-{Describe the programming language that you used}
+I used python in this project.
 
 # Useful Websites
 
 {Make a list of websites that you found helpful in this project}
-* [Web Site Name](http://url.link.goes.here)
-* [Web Site Name](http://url.link.goes.here)
+* [Free Code Camp](https://www.freecodecamp.org/news/python-datetime-now-how-to-get-todays-date-and-time/)
+
