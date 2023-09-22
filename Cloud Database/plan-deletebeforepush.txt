@@ -1,0 +1,6 @@
+Goals:
+- Make a databse using google firestore
+- Write code that allows a user to alter and access
+  the database
+- Write code that allows user to search the database
+  by keyword
