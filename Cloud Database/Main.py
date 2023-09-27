@@ -73,7 +73,23 @@ def updateInventory(cd):
     cd.collection("inventory").document(name).set(data)
 
 def deleteInventory(cd):
+    results = cd.collection("inventory").get()
     name = input("Name of item to delete: ")
+    for result in results:
+            if result.id == name:
+                data = result.to_dict()
+                inStock = data["inStock"]
+                pages = data["pages"]
+                category = data["category"]
+                print(f"\n--{result.id}--\nSection:{category}\nPages: {pages}\nQuantity: {inStock}\n")
+                choice = input("Are you sure you want to delete this item? (Y/N)")
+                if choice.lower() == "y":
+                    cd.collection("inventory").document(name).delete()
+                    return
+                print("Deletion cancelled. ")
+                return
+    print("ERROR, ITEM DOES NOT EXIST. MAYBE YOU TYPED THE NAME WRONG? ")
+    return
 
 def searchInventory(cd):
     results = cd.collection("inventory").get()
@@ -100,8 +116,10 @@ def searchInventory(cd):
                 category = data["category"]
                 print(f"\n--{result.id}--\nSection:{category}\nPages: {pages}\nQuantity: {inStock}\n")
                 return
+            
         print("ERROR, ITEM DOES NOT EXIST. MAYBE YOU TYPED THE NAME WRONG? ")
         return
+    
     elif choice == 3:
         categoryForSearch = input("Category: ")
         for result in results:
@@ -111,6 +129,7 @@ def searchInventory(cd):
                 pages = data["pages"]
                 category = data["category"]
                 print(f"\n--{result.id}--\nSection:{category}\nPages: {pages}\nQuantity: {inStock}\n")
+                
 
 def main():
     cd = init_firestore()
