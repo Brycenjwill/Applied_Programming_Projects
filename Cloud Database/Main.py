@@ -49,7 +49,7 @@ def addNewItem(cd):
 
 def updateInventory(cd):
     name = input("Name: ")
-    choice = int(input("(1) Add to inventory.\n(2)Subtract from inventory."))
+    choice = int(input("(1) Add to inventory.\n(2)Subtract from inventory.\nYour Choice: "))
     qty = int(input("Quantity: "))
 
     result = cd.collection("inventory").document(name).get()
