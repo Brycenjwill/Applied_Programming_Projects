@@ -19,25 +19,54 @@
     <script src="https://js.arcgis.com/4.27/"></script>
   
     <script>
-      require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, Map, MapView) {
-      
-        esriConfig.apiKey = "AAPK74d53fd72f794699943b41e0e1ada912HSH980T9Y1KcHzzDdFEX-_rMK_u2cWHpK7LCZ9WeVhGhYmRc0NIF1I7ToDsLkzKd";
+      require(["esri/config", 
+      "esri/Map", 
+      "esri/views/MapView",
+      "esri/layers/FeatureLayer",
+      "esri/widgets/BasemapToggle",
+      "esri/widgets/BasemapGallery"
 
-        const map = new Map({
-          basemap: "arcgis-topographic" // Basemap layer service
-        });
-        
+      ], (esriConfig, Map, MapView, FeatureLayer, BasemapToggle, BasemapGallery)=> {
+
+      esriConfig.apiKey = "AAPK74d53fd72f794699943b41e0e1ada912HSH980T9Y1KcHzzDdFEX-_rMK_u2cWHpK7LCZ9WeVhGhYmRc0NIF1I7ToDsLkzKd";
+
+      const map = new Map({
+      basemap: "arcgis-topographic" //Basemap service
+      });
         const view = new MapView({
           map: map,
-          center: [-111.8924, 43.6920], // Longitude, latitude
-          zoom: 10, // Zoom level
+          center: [-111.8524, 43.8020], // Longitude, latitude
+          zoom: 11.8, // Zoom level
           container: "viewDiv" // Div element
         });
+
+        const basemapToggle = new BasemapToggle({
+        view: view,
+        nextBasemap: "arcgis-imagery"
+     });
+
+
+      view.ui.add(basemapToggle,"bottom-right");
         
+     
+     const popupChocolate = {
+        "title": "{Name}",
+        "content": "<br>Rating: {Yelp_Rating}</br>Type: {Location_Type}"
+      }
+        const chocoalteLayer = new FeatureLayer({
+          url: "https://services5.arcgis.com/jsIf6EJhRIR3wSIk/arcgis/rest/services/Chocolate_Places_Near_Rexburg/FeatureServer",
+          outfields: ["name"],
+          popupTemplate: popupChocolate
+        });
+        map.add(chocoalteLayer, 0);
+
+        
+
       });
     </script>
     
   </head>
+  
   <body>
     <div id="viewDiv"></div>
   </body>
